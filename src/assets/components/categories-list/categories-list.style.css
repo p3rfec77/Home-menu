@@ -1,0 +1,34 @@
+.menu__categories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu__category {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    gap: 15px;
+}
+
+.menu__category_title { 
+    margin: auto 0;
+}
+
+.menu__category_add-btn {
+    color: white;
+    background-color: #77cc6e;
+    border: none;
+    padding: 5px 10.5px;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: 700;
+    transition: 500ms;
+}
+
+.menu__category_add-btn:hover, .menu__category_add-btn:focus {
+    background-color: white;
+    color: #77cc6e;
+    transform: rotate(0.25turn);
+    outline: none;
+}
