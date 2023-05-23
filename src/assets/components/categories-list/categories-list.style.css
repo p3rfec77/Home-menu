@@ -6,9 +6,9 @@
 
 .menu__category {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    text-align: center;
-    gap: 15px;
+    margin: 20px 0px 0px 20px;
 }
 
 .menu__category_title { 
@@ -23,6 +23,8 @@
     border-radius: 50%;
     font-size: 20px;
     font-weight: 700;
+    cursor: pointer;
+    margin-left: 10px;
     transition: 500ms;
 }
 
@@ -32,3 +34,12 @@
     transform: rotate(0.25turn);
     outline: none;
 }
+
+.menu__add-dish {
+    margin-top: 10px;
+    max-width: 20%;
+}
+
+.menu__add-dish:focus {
+    outline: none;
+} 

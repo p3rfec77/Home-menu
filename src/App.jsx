@@ -5,14 +5,14 @@ import CategoriesList from './assets/components/categories-list/categories-list.
 
 const App = () => {
   const categories = [
-    { name: 'Завтраки' },
-    { name: 'Холодные закуски' },
-    { name: 'Горячие закуски' },
-    { name: 'Салаты' },
-    { name: 'Супы' },
-    { name: 'Горячие блюда' },
-    { name: 'Гаринры' },
-    { name: 'Десерты' }
+    { name: 'Завтраки', index: 0 },
+    { name: 'Холодные закуски', index: 1 },
+    { name: 'Горячие закуски', index: 2 },
+    { name: 'Салаты', index: 3 },
+    { name: 'Супы', index: 4 },
+    { name: 'Горячие блюда', index: 5 },
+    { name: 'Гаринры', index: 6 },
+    { name: 'Десерты', index: 7 }
   ];
 
   return (
