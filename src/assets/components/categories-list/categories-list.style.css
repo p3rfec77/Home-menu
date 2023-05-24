@@ -6,9 +6,9 @@
 
 .menu__category {
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
     margin: 20px 0px 0px 20px;
+    position: relative;
 }
 
 .menu__category_title { 
@@ -35,11 +35,53 @@
     outline: none;
 }
 
-.menu__add-dish {
-    margin-top: 10px;
-    max-width: 20%;
+.menu__category_add-dish {
+    max-width: 100%;
+    position: absolute;
+    top: 40px;
+    left: 0;
 }
 
-.menu__add-dish:focus {
+.menu__category_add-dish::before {
+    content: "-  ";
+    color: black;
+}
+
+.menu__add-dish-text {
+    background: transparent;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.menu__add-dish-text::placeholder {
+    color: black;
+}
+
+.menu__add-dish-text:focus {
     outline: none;
 } 
+
+.menu__add-dish_cancel-btn {
+    color: red;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.menu__add-dish_cancel-btn:focus {
+    outline: none;
+}
+
+.menu__add-dish_add-btn {
+    color: #31f548;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+    cursor: pointer;
+}
