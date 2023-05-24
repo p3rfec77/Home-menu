@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import Header from './assets/components/header/header.component'
 import CategoriesList from './assets/components/categories-list/categories-list.components';

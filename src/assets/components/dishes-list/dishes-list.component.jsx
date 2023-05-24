@@ -1,7 +1,7 @@
 import './dishes-list.style.css'
 
 const DishesList = ({ props }) => {
-    const { dishes, removeDish } = props;
+    const { dishes, removeDish, removeFromLocaleStorage } = props;
     return (
         <ul className="menu__dishes-list">
             {dishes.map((dish, index) => {
@@ -11,7 +11,7 @@ const DishesList = ({ props }) => {
 
                         <button
                             className="menu__dishes-list_remove"
-                            onClick={() => removeDish(index)}
+                            onClick={() => { removeDish(index); removeFromLocaleStorage() }}
                         >&#10006;</button>
                     </div>
                 )

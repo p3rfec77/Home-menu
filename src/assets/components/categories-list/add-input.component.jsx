@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DishesList from "../dishes-list/dishes-list.component";
 
-const AddInput = () => {
+const AddInput = ({ CategoryName }) => {
     const [input, setinput] = useState(false);
     const [btnState, setBtnState] = useState('menu__category_add-btn_visible');
     const [dishes, setDishes] = useState([]);
     const [inputValue, setInputValue] = useState('');
+
     const showInput = () => {
         setinput(true);
     };
@@ -37,13 +38,33 @@ const AddInput = () => {
         }
     }
 
+
+    useEffect(() => {
+        const downloadDishes = () => {
+            const storedDishes = JSON.parse(localStorage.getItem(CategoryName, dishes))
+            if (storedDishes) {
+                setDishes(storedDishes);
+            }
+        };
+
+        downloadDishes();
+    }, [])
+
+    const addToLocaleStorage = () => {
+        localStorage.setItem(CategoryName, JSON.stringify(dishes));
+    }
+
+    const removeFromLocaleStorage = () => {
+        localStorage.removeItem(CategoryName, JSON.stringify(dishes));
+    }
+
     const removeDish = (index) => {
         setDishes([...dishes.slice(0, index), ...dishes.slice(index + 1)])
     }
 
     return (
         <div>
-            <DishesList props={{ dishes, removeDish }} />
+            <DishesList props={{ dishes, removeDish, removeFromLocaleStorage }} />
             <button
                 className={`menu__category_add-btn ${btnState}`}
                 onClick={() => { showInput(); ChangeBtnState() }}
@@ -70,6 +91,8 @@ const AddInput = () => {
                         onClick={() => { hideInput(); ChangeBtnState() }}
                     >&#10006;</button>
                 </div>}
+
+            <button onClick={addToLocaleStorage}>{`Обновить ${CategoryName}`}</button>
         </div>
     )
 };
