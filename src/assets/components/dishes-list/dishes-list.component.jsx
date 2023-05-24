@@ -1,3 +1,5 @@
+import './dishes-list.style.css'
+
 const DishesList = ({ props }) => {
     const { dishes, removeDish } = props;
     return (
