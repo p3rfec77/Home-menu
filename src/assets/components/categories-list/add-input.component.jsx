@@ -1,10 +1,10 @@
 import { useState } from "react";
+import DishesList from "../dishes-list/dishes-list.component";
 
-const AddInput = ({ props }) => {
-    const { dishes, setDishes } = props;
-
+const AddInput = () => {
     const [input, setinput] = useState(false);
     const [btnState, setBtnState] = useState('menu__category_add-btn_visible');
+    const [dishes, setDishes] = useState([]);
     const [inputValue, setInputValue] = useState('');
     const showInput = () => {
         setinput(true);
@@ -37,8 +37,13 @@ const AddInput = ({ props }) => {
         }
     }
 
+    const removeDish = (index) => {
+        setDishes([...dishes.slice(0, index), ...dishes.slice(index + 1)])
+    }
+
     return (
         <div>
+            <DishesList props={{ dishes, removeDish }} />
             <button
                 className={`menu__category_add-btn ${btnState}`}
                 onClick={() => { showInput(); ChangeBtnState() }}
