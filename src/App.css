@@ -2,6 +2,10 @@ html {
     scroll-behavior: smooth;
 }
 
+body {
+    font-family: 'Merriweather', serif;
+}
+
 .menu__wrapper {
     max-width: 100%;
     margin: 0 auto;

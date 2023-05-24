@@ -6,12 +6,13 @@
 
 .menu__category {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     margin: 20px 0px 0px 20px;
-    position: relative;
 }
 
 .menu__category_title { 
+    font-size: 30px;
     margin: auto 0;
 }
 
@@ -24,8 +25,16 @@
     font-size: 20px;
     font-weight: 700;
     cursor: pointer;
-    margin-left: 10px;
+    margin-top: 10px;
     transition: 500ms;
+}
+
+.menu__category_add-btn_visible {
+    display: block;
+}
+
+.menu__category_add-btn_hidden {
+    display: none;
 }
 
 .menu__category_add-btn:hover, .menu__category_add-btn:focus {
@@ -37,9 +46,6 @@
 
 .menu__category_add-dish {
     max-width: 100%;
-    position: absolute;
-    top: 40px;
-    left: 0;
 }
 
 .menu__category_add-dish::before {
@@ -66,22 +72,70 @@
     color: red;
     background-color: transparent;
     border: none;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     margin-left: 10px;
     cursor: pointer;
 }
 
-.menu__add-dish_cancel-btn:focus {
-    outline: none;
+.menu__add-dish_add-btn {
+    color: #27eb3e;
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 10px;
+    cursor: pointer;
 }
 
-.menu__add-dish_add-btn {
-    color: #31f548;
+.menu__dishes-list {
+  list-style: none;
+}
+
+.menu__dishes-list_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-between;
+    transition: 200ms;
+    position: relative;
+}
+
+.menu__dishes-list_remove {
+    color: red;
     background-color: transparent;
     border: none;
     font-size: 20px;
     font-weight: bold;
-    margin-left: 10px;
+    margin-right: 40px;
     cursor: pointer;
+    opacity: 0;
+    transition: 200ms;
+    z-index: 2;
+}
+
+.menu__dishes-list_wrapper:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .2);
+    z-index: 1;
+}
+
+.menu__dishes-list_wrapper:hover .menu__dishes-list_remove {
+    opacity: 1;
+}
+
+.menu__dishes-list_dish {
+    font-weight: 500;
+    margin-top: 10px;
+    z-index: 3;
+}
+
+.menu__dishes-list_dish::before {
+    content: '-   ';
 }
