@@ -1,17 +1,14 @@
+import React from 'react';
+import { useState, createContext } from 'react';
 import './App.css'
 import Header from './assets/components/header/header.component'
 import CategoriesList from './assets/components/categories-list/categories-list.components';
 
 const App = () => {
   const categories = [
-    { name: 'Завтраки', index: 0 },
-    { name: 'Холодные закуски', index: 1 },
-    { name: 'Горячие закуски', index: 2 },
-    { name: 'Салаты', index: 3 },
-    { name: 'Супы', index: 4 },
-    { name: 'Горячие блюда', index: 5 },
-    { name: 'Гаринры', index: 6 },
-    { name: 'Десерты', index: 7 }
+    { name: 'Завтраки', menu: [], index: 0 },
+    { name: 'Основное меню', menu: [], index: 1 },
+    { name: 'Десерты', menu: [], index: 2 },
   ];
 
   return (

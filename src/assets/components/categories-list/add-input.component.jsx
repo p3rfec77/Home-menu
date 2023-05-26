@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { menuContext } from "./categories-list.components";
 import DishesList from "../dishes-list/dishes-list.component";
 
-const AddInput = ({ CategoryName }) => {
+const AddInput = () => {
+
+    const context = useContext(menuContext);
+    let { categories, category } = context;
     const [input, setinput] = useState(false);
     const [btnState, setBtnState] = useState('menu__category_add-btn_visible');
-    const [dishes, setDishes] = useState([]);
     const [inputValue, setInputValue] = useState('');
 
     const showInput = () => {
@@ -27,7 +30,7 @@ const AddInput = ({ CategoryName }) => {
     }
 
     const addDish = () => {
-        setDishes([...dishes, inputValue]);
+        category.menu = [...category.menu, inputValue];
         setinput(false);
     }
 
@@ -38,33 +41,34 @@ const AddInput = ({ CategoryName }) => {
         }
     }
 
+    const removeDish = (index) => {
+        category.menu = [...category.menu.slice(0, index), ...category.menu.slice(index + 1)];
+    }
 
     useEffect(() => {
         const downloadDishes = () => {
-            const storedDishes = JSON.parse(localStorage.getItem(CategoryName, dishes))
-            if (storedDishes) {
-                setDishes(storedDishes);
-            }
+            const menuData = JSON.parse(localStorage.getItem('categories'))
+            menuData.map(a => {
+                if (a.name === category.name) {
+                    category.menu = a.menu;
+                    console.log()
+                }
+            })
+
+            console.log(category.menu)
         };
 
         downloadDishes();
     }, [])
 
-    const addToLocaleStorage = () => {
-        localStorage.setItem(CategoryName, JSON.stringify(dishes));
-    }
 
-    const removeFromLocaleStorage = () => {
-        localStorage.removeItem(CategoryName, JSON.stringify(dishes));
-    }
-
-    const removeDish = (index) => {
-        setDishes([...dishes.slice(0, index), ...dishes.slice(index + 1)])
-    }
+    // const removeFromLocaleStorage = () => {
+    //     localStorage.removeItem(category.name, JSON.stringify(categories));
+    // }
 
     return (
         <div>
-            <DishesList props={{ dishes, removeDish, removeFromLocaleStorage }} />
+            <DishesList props={{ removeDish }} />
             <button
                 className={`menu__category_add-btn ${btnState}`}
                 onClick={() => { showInput(); ChangeBtnState() }}
@@ -92,7 +96,7 @@ const AddInput = ({ CategoryName }) => {
                     >&#10006;</button>
                 </div>}
 
-            <button onClick={addToLocaleStorage}>{`Обновить ${CategoryName}`}</button>
+            {/* <button onClick={addToLocaleStorage}>{`Обновить ${category.name}`}</button> */}
         </div>
     )
 };
