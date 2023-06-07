@@ -1,24 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+
+import { MenuContext } from "../../context/menu.context";
+
 import DishesList from "../dishes-list/dishes-list.component";
+import AddingDishField from "../adding-dish-field/adding-dish-field.component";
 
-const AddInput = () => {
+const AddInput = ({ category }) => {
+    const { setCategories, addDishToMenu } = useContext(MenuContext);
+    const { menu } = category;
     const [input, setinput] = useState(false);
-    const [btnState, setBtnState] = useState('menu__category_add-btn_visible');
-    const [dishes, setDishes] = useState([]);
+    const [isBtnShown, setIsBtnShown] = useState(true);
     const [inputValue, setInputValue] = useState('');
-    const showInput = () => {
-        setinput(true);
-    };
-    const hideInput = () => {
-        setinput(false);
-    };
 
-    const ChangeBtnState = () => {
-        if (!input) {
-            setBtnState('menu__category_add-btn_hidden');
-        } else {
-            setBtnState('menu__category_add-btn_visible');
-        }
+    const toggleInput = () => setinput(!input);
+
+    const toggleBtn = () => {
+        setIsBtnShown(!isBtnShown);
     };
 
     const onInputChange = (e) => {
@@ -26,50 +23,39 @@ const AddInput = () => {
     }
 
     const addDish = () => {
-        setDishes([...dishes, inputValue]);
+        addDishToMenu(category, inputValue);
         setinput(false);
     }
 
     const addDishOnKey = (e) => {
         if (e.key === 'Enter') {
             addDish();
-            ChangeBtnState();
+            toggleBtn();
         }
     }
 
-    const removeDish = (index) => {
-        setDishes([...dishes.slice(0, index), ...dishes.slice(index + 1)])
-    }
+    useEffect(() => {
+        const menuData = JSON.parse(localStorage.getItem('categories'));
+        setCategories(menuData);
+    }, []);
 
     return (
         <div>
-            <DishesList props={{ dishes, removeDish }} />
-            <button
-                className={`menu__category_add-btn ${btnState}`}
-                onClick={() => { showInput(); ChangeBtnState() }}
-            >+</button>
+            <DishesList menu={menu} category={category} />
+            {isBtnShown &&
+                <button
+                    className='menu__category_add-btn'
+                    onClick={() => { toggleInput(); toggleBtn() }}
+                >+</button>
+            }
 
-            {input &&
-                <div className="menu__category_add-dish">
-                    <input
-                        className='menu__add-dish-text'
-                        placeholder='Введите блюдо...'
-                        autoFocus={true}
-                        onChange={onInputChange}
-                        onKeyDown={addDishOnKey}
-                    />
-
-                    <button
-                        className="menu__add-dish_add-btn"
-                        onClick={() => { addDish(); ChangeBtnState() }}
-                        onKeyDown={addDishOnKey}
-                    >&#10004;</button>
-
-                    <button
-                        className="menu__add-dish_cancel-btn"
-                        onClick={() => { hideInput(); ChangeBtnState() }}
-                    >&#10006;</button>
-                </div>}
+            {input && <AddingDishField
+                addDishOnKey={addDishOnKey}
+                onInputChange={onInputChange}
+                addDish={addDish}
+                toggleBtn={toggleBtn}
+                toggleInput={toggleInput}
+            />}
         </div>
     )
 };

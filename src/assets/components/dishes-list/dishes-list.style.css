@@ -11,19 +11,6 @@
     position: relative;
 }
 
-.menu__dishes-list_remove {
-    color: red;
-    background-color: transparent;
-    border: none;
-    font-size: 20px;
-    font-weight: bold;
-    margin-right: 40px;
-    cursor: pointer;
-    opacity: 0;
-    transition: 200ms;
-    z-index: 2;
-}
-
 .menu__dishes-list_wrapper:hover::after {
     content: '';
     position: absolute;

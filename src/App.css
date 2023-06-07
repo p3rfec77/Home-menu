@@ -2,7 +2,7 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
+body, html {
     font-family: 'Merriweather', serif;
 }
 
