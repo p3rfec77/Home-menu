@@ -1,23 +1,23 @@
-import { useContext } from 'react';
-import { menuContext } from '../categories-list/categories-list.components';
+import { useContext } from 'react'
+
+import { MenuContext } from '../../context/menu.context'
+
+import Dish from '../dish/dish.component'
+
 import './dishes-list.style.css'
 
 
-const DishesList = ({ props }) => {
-    const context = useContext(menuContext);
-    const { category } = context;
-    const { removeDish } = props;
+const DishesList = ({ menu, category }) => {
+    const { removeDishFromMenu } = useContext(MenuContext);
+
     return (
         <ul className="menu__dishes-list">
-            {category.menu.map((dish, index) => {
+            {menu.map((dish, index) => {
+                const removeDish = () => removeDishFromMenu(category, dish);
+
                 return (
                     <div className="menu__dishes-list_wrapper" key={index}>
-                        <li className="menu__dishes-list_dish">{dish}</li>
-
-                        <button
-                            className="menu__dishes-list_remove"
-                            onClick={() => { removeDish(index); }}
-                        >&#10006;</button>
+                        {dish && <Dish removeDish={removeDish} dish={dish} />}
                     </div>
                 )
             })}

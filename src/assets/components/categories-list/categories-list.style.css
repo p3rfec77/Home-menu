@@ -16,6 +16,24 @@
     margin: auto 0;
 }
 
+.update-menu__btn {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 500;
+    transition: 300ms;
+}
+
+.update-menu__btn:hover, .update-menu__btn:focus {
+    background-color: white;
+    color: black;
+}
+
 .menu__category_add-btn {
     color: white;
     background-color: #77cc6e;
@@ -27,14 +45,6 @@
     cursor: pointer;
     margin-top: 10px;
     transition: 500ms;
-}
-
-.menu__category_add-btn_visible {
-    display: block;
-}
-
-.menu__category_add-btn_hidden {
-    display: none;
 }
 
 .menu__category_add-btn:hover, .menu__category_add-btn:focus {
