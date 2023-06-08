@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 const BASE = [
     { name: 'Завтраки', menu: [], index: 0 },
@@ -28,7 +28,7 @@ const removeDish = (categories, categoryRemoveFrom, dishToRemove) => {
 }
 
 export const MenuContext = createContext({
-    categories: [BASE],
+    categories: [],
     setCategories: () => { },
     addDishToMenu: () => { },
     removeDishFromMenu: () => { }
@@ -36,9 +36,6 @@ export const MenuContext = createContext({
 
 export const MenuProvider = ({ children }) => {
     const [categories, setCategories] = useState(BASE);
-    useEffect(() => {
-        setCategories(BASE);
-    }, [])
 
     const addDishToMenu = (categoryToAdd, dishToAdd) => {
         setCategories(addDish(categories, categoryToAdd, dishToAdd));
