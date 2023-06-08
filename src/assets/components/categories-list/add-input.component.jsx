@@ -36,7 +36,9 @@ const AddInput = ({ category }) => {
 
     useEffect(() => {
         const menuData = JSON.parse(localStorage.getItem('categories'));
-        setCategories(menuData);
+        if (menuData) {
+            setCategories(menuData);
+        }
     }, []);
 
     return (
